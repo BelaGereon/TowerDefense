@@ -6,13 +6,11 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 public class Window {
-
-    private BufferedImage image;
-    private Canvas canvas;
-    private JFrame jFrame;
-    private Graphics graphics;
-    private BufferStrategy bufferStrategy;
-
+    private final BufferedImage image;
+    private final Canvas canvas;
+    private final JFrame jFrame;
+    private final Graphics graphics;
+    private final BufferStrategy bufferStrategy;
     public Window(GameContainer gameContainer) {
         image = new BufferedImage(
                 gameContainer.getWidth(),
@@ -43,8 +41,17 @@ public class Window {
         graphics = bufferStrategy.getDrawGraphics();
     }
 
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
     public void update() {
         graphics.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
+        bufferStrategy.show();
     }
 
 }
