@@ -8,7 +8,12 @@ public abstract class GameContainer implements Runnable {
 
     private final double UPDATE_CAP = 1.0 / 60.0; // update 60 times per second
     private final double nanoSecToMilliSec = 1000000000.0;
+    private int width = 320;
+    private int height = 240;
+    private float scale = 4f;
+    private String title = "TowerDefense Engine v1.0";
     private Thread thread;
+    private Window window;
     private boolean running = false;
 
     public GameContainer() {
@@ -21,7 +26,40 @@ public abstract class GameContainer implements Runnable {
         gameContainer.start();
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public void start() {
+        window = new Window(this);
         thread = new Thread(this);
         thread.run();
     }
@@ -70,6 +108,7 @@ public abstract class GameContainer implements Runnable {
 
             if (render) {
                 //TODO: Render game
+                window.update();
                 frames++;
             } else {
                 try {
