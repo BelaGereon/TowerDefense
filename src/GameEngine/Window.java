@@ -49,6 +49,10 @@ public class Window {
         return canvas;
     }
 
+    public JFrame getjFrame() {
+        return jFrame;
+    }
+
     public void update() {
         graphics.drawImage(image, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
         bufferStrategy.show();
