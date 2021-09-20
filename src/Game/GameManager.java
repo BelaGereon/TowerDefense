@@ -7,10 +7,12 @@ import GameEngine.gfx.Image;
 
 public class GameManager extends AbstractGame {
 
-    private final Image image;
+    private final Image test;
+    private final Image star;
 
     public GameManager() {
-        image = new Image("/testObject.png");
+        test = new Image("/testObject.png");
+        star = new Image("/star.png");
     }
 
     @Override
@@ -21,9 +23,9 @@ public class GameManager extends AbstractGame {
     @Override
     public void render(GameContainer gameContainer, Renderer renderer) {
         renderer.drawImage(
-                image,
-                gameContainer.getInput().getMouseX() - (image.getWidth() / 2),
-                gameContainer.getInput().getMouseY() - (image.getHeight() / 2));
+                star,
+                gameContainer.getInput().getMouseX() - (star.getWidth() / 2),
+                gameContainer.getInput().getMouseY() - (star.getHeight() / 2));
     }
 
     public static void main(String[] args) {
