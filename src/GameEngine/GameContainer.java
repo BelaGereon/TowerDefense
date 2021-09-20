@@ -8,6 +8,7 @@ public abstract class GameContainer implements Runnable {
     private Thread thread;
     private Window window;
     private Renderer renderer;
+    private Input input;
 
     private final double UPDATE_CAP = 1.0 / 60.0; // update 60 times per second
     private final double nanoSecToMilliSec = 1000000000.0;
@@ -18,6 +19,7 @@ public abstract class GameContainer implements Runnable {
     private String title = "TowerDefense Engine v1.0";
 
     private boolean running = false;
+
     public GameContainer() {
 
     }
@@ -29,10 +31,10 @@ public abstract class GameContainer implements Runnable {
     }
 
 
-
     public void start() {
         window = new Window(this);
         renderer = new Renderer(this);
+        input = new Input(this);
 
         thread = new Thread(this);
         thread.run();
@@ -72,6 +74,8 @@ public abstract class GameContainer implements Runnable {
                 render = true;
 
                 //TODO: Update game
+                input.update();
+
                 if (frameTime >= 1.0) {
                     frameTime = 0;
                     fps = frames;
