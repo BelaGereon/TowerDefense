@@ -4,7 +4,7 @@ package GameEngine;
  * This class will handle the gameloop and user input
  */
 
-public abstract class GameContainer implements Runnable {
+public class GameContainer implements Runnable {
     private Thread thread;
     private Window window;
     private Renderer renderer;
@@ -31,6 +31,7 @@ public abstract class GameContainer implements Runnable {
         input = new Input(this);
 
         thread = new Thread(this);
+        //noinspection CallToThreadRun
         thread.run();
     }
 
@@ -136,5 +137,9 @@ public abstract class GameContainer implements Runnable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Input getInput() {
+        return input;
     }
 }
