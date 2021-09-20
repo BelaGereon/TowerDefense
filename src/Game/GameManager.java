@@ -14,4 +14,9 @@ public class GameManager extends AbstractGame {
     public void render(GameContainer gameContainer, Renderer renderer) {
 
     }
+
+    public static void main(String[] args) {
+        GameContainer gameContainer = new GameContainer(new GameManager());
+        gameContainer.start();
+    }
 }
