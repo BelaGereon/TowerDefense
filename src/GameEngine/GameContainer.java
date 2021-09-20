@@ -9,6 +9,7 @@ public abstract class GameContainer implements Runnable {
     private Window window;
     private Renderer renderer;
     private Input input;
+    private AbstractGame game;
 
     private final double UPDATE_CAP = 1.0 / 60.0; // update 60 times per second
     private final double nanoSecToMilliSec = 1000000000.0;
@@ -20,16 +21,9 @@ public abstract class GameContainer implements Runnable {
 
     private boolean running = false;
 
-    public GameContainer() {
-
+    public GameContainer(AbstractGame game) {
+        this.game = game;
     }
-
-    public static void main(String[] args) {
-        GameContainer gameContainer = new GameContainer() {
-        };
-        gameContainer.start();
-    }
-
 
     public void start() {
         window = new Window(this);
@@ -73,6 +67,8 @@ public abstract class GameContainer implements Runnable {
                 unprocessedTime -= UPDATE_CAP;
                 render = true;
 
+                game.update(this, (float)UPDATE_CAP);
+
                 //TODO: Update game
                 input.update();
 
@@ -86,8 +82,7 @@ public abstract class GameContainer implements Runnable {
 
             if (render) {
                 renderer.clear();
-
-                //TODO: Render game
+                game.render(this, renderer);
                 window.update();
                 frames++;
             } else {
