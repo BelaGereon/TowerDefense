@@ -7,11 +7,9 @@ import GameEngine.gfx.Image;
 
 public class GameManager extends AbstractGame {
 
-    private final Image test;
     private final Image star;
 
     public GameManager() {
-        test = new Image("/testObject.png");
         star = new Image("/star.png");
     }
 
